@@ -15,11 +15,14 @@ exports.filterCached = filterCached
 exports.cacheItems = cacheItems
 
 async function nullIfExist(item) {
-    return await keyv.get(item.id) ? null : item
+    const cacheId = item.part ? `${item.id}_${item.part[0]}` : item.id
+    const exist = await keyv.get(cacheId)
+    return exist ? null : item
 }
 
 async function save(item) {
-    await keyv.set(item.id, true)
+    const cacheId = item.part ? `${item.id}_${item.part[0]}` : item.id
+    await keyv.set(cacheId, true)
 }
 
 async function filterCached(items) {
