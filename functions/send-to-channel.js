@@ -1,4 +1,5 @@
 const axios = require('axios')
+const Promise = require('bluebird')
 
 const ITEM_TIMEOUT = 200
 
@@ -29,8 +30,9 @@ ${item.author}, <a href="${item.link}">${item.age}</a> ${item.part ? `[${item.pa
 }
 
 async function sendToChannel(channel, token, items) {
-    const sending = items.map((item, index) => sendItem(channel, token, item, index))
-    const sended = await Promise.all(sending)
+    const sended = await Promise.map(items, async function (item, index) {
+        return sendItem(channel, token, item, index)
+    })
 
     return sended.filter(item => item)
 }

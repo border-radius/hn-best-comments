@@ -11,7 +11,7 @@ async function job() {
     const freshComments = await filterCached(splitedComments)
     const freshLimitedComments = freshComments.slice(0, 5)
     
-    console.log(`Post ${freshLimitedComments.length}/${splitedComments.length}.`, new Date().toUTCString())
+    console.log(`Post ${freshLimitedComments.length}/${freshComments.length} (${splitedComments.length}).`, new Date().toUTCString())
 
     const sended = await sendToChannel(process.env.CHANNEL_ID, process.env.BOT_TOKEN, freshLimitedComments)
     await cacheItems(sended)

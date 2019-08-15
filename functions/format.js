@@ -9,7 +9,7 @@ function format(untochedHTML) {
     const fixFirstParagraph = `<p>${untochedHTML.replace('<p>', '</p><p>')}`
     
     // set all links text equal to the href
-    // so html-to-text wont create wierd markdown-like links
+    // so html-to-text wont create weird markdown-like links
     // like "text... [link]"
     const query = cheerio.load(fixFirstParagraph)
     query('a').each(function () {
