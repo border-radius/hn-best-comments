@@ -8,7 +8,7 @@ async function job() {
     const comments = await getComments()
     const freshComments = await filterCached(comments)
     console.log('Fetched', comments.length, 'comments, of which', freshComments.length, 'fresh.', new Date().toUTCString())
-    const sended = await sendToChannel(process.env.CHANNEL_ID, process.env.BOT_TOKEN, freshComments)
+    const sended = await sendToChannel(process.env.CHANNEL_ID, process.env.BOT_TOKEN, freshComments.slice(0, 5))
     await cacheItems(sended)
 }
 
