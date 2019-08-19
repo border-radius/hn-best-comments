@@ -19,5 +19,5 @@ function format(untochedHTML) {
     return htmlToText.fromString(query.html(), {
         wordwrap: null,
         hideLinkHrefIfSameAsText: true,
-    }).trim()
+    }).trim().replace(/</g, '&lt;')
 }
