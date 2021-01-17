@@ -6,6 +6,11 @@ const { filterCached, cacheItems } = require('./functions/cache')
 
 const UPDATE_INTERVAL = 1000 * 60 * 5
 
+if (typeof process.env.CHANNEL_ID === 'undefined' || typeof process.env.BOT_TOKEN === 'undefined') {
+    console.error('Could not start: missing env variables CHANNEL_ID or BOT_TOKEN')
+    process.exit(1)
+}
+
 async function job() {
     const comments = await getComments()
     const splitedComments = split(comments)

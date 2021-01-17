@@ -5,10 +5,10 @@ Checks /bestcomments every 5 minutes and posts new comments to the telegram chan
 Usage:
 
 ```bash
-git clone https://github.com/border-radius/hn-best-comments
+git clone https://github.com/akkez/hn-best-comments
 cd hn-best-comments
-npm install
-CHANNEL_ID=@mychannel BOT_TOKEN=12345:qwerty_asdfg npm start
+docker build -t hn-best-comments-app . 
+docker run --restart=always --env CHANNEL_ID=@mychannel --env BOT_TOKEN=12345:token hn-best-comments-app
 ```
 
 License: MIT
