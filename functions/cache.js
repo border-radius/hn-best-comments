@@ -1,4 +1,3 @@
-const os = require('os')
 const Keyv = require('keyv')
 const Promise = require('bluebird')
 const KeyvFile = require('keyv-file')
@@ -7,7 +6,7 @@ const CACHE_TTL_MS = 1000 * 3600 * 24 * 30
 
 const keyv = new Keyv({
     store: new KeyvFile({
-        filename: `${os.tmpdir()}/hn-best-comments.json`,
+        filename: `${__dirname}/hn-best-comments.json`,
         expiredCheckDelay: CACHE_TTL_MS
     })
 })
