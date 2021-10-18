@@ -20,7 +20,7 @@ async function getComments() {
             // see: https://github.com/cheeriojs/cheerio/issues/839
             text: format(query(this).find('.comment').html()),
             author: query(this).find('.hnuser').text().trim(),
-            story_link: `${URL_PREFIX}/${query(this).find('.storyon a').attr('href')}`,
+            story_link: `${URL_PREFIX}/${query(this).find('.onstory a').attr('href')}`,
             story_title: query(this).find('.storyon a').text().trim(),
         }
     }).get()
