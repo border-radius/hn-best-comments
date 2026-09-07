@@ -134,13 +134,14 @@ const publishComments = list => {
     const commentLink = `https://news.ycombinator.com/item?id=${item.extId}`
     const title = item.storyTitle.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
+    const unixTimestamp = Math.round(item.extCreated.getTime() / 1000)
     const content = [
       `<p>Re: <a href="${storyLink}">${title}</a></p>`,
       '<p></p>',
       item.text,
       '<p></p>',
-      `<p>${item.author}, `,
-      `<a href="${commentLink}">${getRelativeDate(item.extCreated)}</a>`,
+      `<p><a href="${commentLink}">${item.author}</a>, `,
+      `<tg-time unix="${unixTimestamp}" format="r">${getRelativeDate(item.extCreated)}</tg-time>`,
       item.partOf ? ` [${item.part}/${item.partOf}]` : '',
       '</p>'
     ].join('').replace(/<p>/g, '\n\n').replace(/<\/p>/g, '\n\n').replace(/(\n\n+)/g, '\n\n')
